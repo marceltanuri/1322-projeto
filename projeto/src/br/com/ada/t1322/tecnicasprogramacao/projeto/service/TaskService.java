@@ -29,9 +29,11 @@ public interface TaskService {
 
     void clearAll();
 
-    void notifyUpcomingDeadlines(int daysBefore);
-
     Task updateTask(TaskUpdateRequest updateRequest);
 
     Task updateStatus(Long id, Task.Status newStatus);
+
+    void stopNotifier();
+
+    void startNotifier();
 }

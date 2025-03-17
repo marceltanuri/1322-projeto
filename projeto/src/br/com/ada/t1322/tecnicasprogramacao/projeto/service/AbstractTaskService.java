@@ -3,6 +3,9 @@ package br.com.ada.t1322.tecnicasprogramacao.projeto.service;
 import br.com.ada.t1322.tecnicasprogramacao.projeto.dto.TaskUpdateRequest;
 import br.com.ada.t1322.tecnicasprogramacao.projeto.model.Task;
 import br.com.ada.t1322.tecnicasprogramacao.projeto.repository.TaskRepository;
+import br.com.ada.t1322.tecnicasprogramacao.projeto.service.notification.Notifier;
+import br.com.ada.t1322.tecnicasprogramacao.projeto.service.notification.TaskNotifier;
+import br.com.ada.t1322.tecnicasprogramacao.projeto.service.validation.TaskValidator;
 
 import java.util.Optional;
 
@@ -10,11 +13,23 @@ public abstract class AbstractTaskService implements TaskService {
 
     protected final TaskRepository taskRepository;
 
-    public AbstractTaskService(TaskRepository taskRepository) {
+    protected final TaskValidator taskValidator;
+    protected final Notifier notifier;
+
+    public AbstractTaskService(TaskRepository taskRepository, TaskValidator taskValidator, Notifier notifier) {
         if (taskRepository == null) {
             throw new IllegalArgumentException("TaskRepository não pode ser nulo.");
         }
         this.taskRepository = taskRepository;
+        if (taskValidator == null) {
+            throw new IllegalArgumentException("TaskValidator não pode ser nulo.");
+        }
+        this.taskValidator = taskValidator;
+
+        if (notifier == null) {
+            throw new IllegalArgumentException("Notifier não pode ser nulo.");
+        }
+        this.notifier = notifier;
     }
 
     @Override
@@ -32,7 +47,9 @@ public abstract class AbstractTaskService implements TaskService {
         if (task == null) {
             throw new IllegalArgumentException("Tarefa não pode ser nula.");
         }
+        taskValidator.validate(task);
     }
+
 
     @Override
     public Task updateStatus(Long id, Task.Status newStatus) {
@@ -77,7 +94,12 @@ public abstract class AbstractTaskService implements TaskService {
     }
 
     @Override
-    public void notifyUpcomingDeadlines(int daysBefore) {
-        // Implementação futura para notificações com prazo configurável
+    public void stopNotifier() {
+        notifier.stop();
+    }
+
+    @Override
+    public void startNotifier() {
+        notifier.start();
     }
 }

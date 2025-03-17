@@ -38,6 +38,8 @@ public class Application {
         controller.createTask("Call com cliente", "Apresentação de progresso do projeto", LocalDate.now().plusDays(3).format(formatter), Task.Status.EM_ANDAMENTO);
         controller.createTask("Planejamento sprint", "Definição das atividades para a próxima sprint", LocalDate.now().plusDays(4).format(formatter), Task.Status.PENDENTE);
 
+        controller.createTask("Revisar pull requests", "Revisão de pull requests da sprint atual", LocalDate.now().plusDays(1).format(formatter), Task.Status.EM_ANDAMENTO);
+
         System.out.println("✅ 5 tarefas de exemplo foram adicionadas!");
     }
 }
