@@ -1,15 +1,3 @@
----
-marp: true
-theme: default
-class:
-  - lead
-  - invert
-style: |
-  table {
-    font-size: 0.95em;
-  }
----
-
 # 📌 Desafio: Gerenciador de Tarefas Inteligente
 
 ## 📍 Contexto
