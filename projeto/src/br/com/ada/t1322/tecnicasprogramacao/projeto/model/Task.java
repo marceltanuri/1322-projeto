@@ -1,6 +1,7 @@
 package br.com.ada.t1322.tecnicasprogramacao.projeto.model;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 public class Task {
@@ -22,7 +23,8 @@ public class Task {
     public enum Status {
         PENDENTE("Pendente"),
         EM_ANDAMENTO("Em andamento"),
-        CONCLUIDO("Concluído");
+        BLOQUEADO("Bloqueado"),
+        CONCLUIDO("Concluido");
 
         private final String descricao;
 
@@ -86,9 +88,11 @@ public class Task {
 
     @Override
     public String toString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String deadLineFormated = deadline.format(formatter);
         return String.format(
                 "📌 Tarefa #%d%nTítulo: %s%nDescrição: %s%n📅 Prazo: %s%n🔄 Status: %s%n",
-                id, title, description, deadline, status.getDescricao()
+                id, title, description, deadLineFormated, status.getDescricao()
         );
     }
 

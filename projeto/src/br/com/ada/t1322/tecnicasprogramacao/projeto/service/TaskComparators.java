@@ -12,10 +12,13 @@ public class TaskComparators {
 
     public static final Comparator<Task> BY_STATUS = Comparator.comparing(Task::getStatus);
 
+    public static final Comparator<Task> BY_ID = Comparator.comparing(Task::getId);
+
     public static Comparator<Task> getComparator(String criteria, boolean reversed) {
         Comparator<Task> comparator = switch (criteria.toLowerCase()) {
             case "title" -> BY_TITLE;
             case "status" -> BY_STATUS;
+            case "id" -> BY_ID;
             default -> BY_DEADLINE;
         };
         return reversed ? comparator.reversed() : comparator;

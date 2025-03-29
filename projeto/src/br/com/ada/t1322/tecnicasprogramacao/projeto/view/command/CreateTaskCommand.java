@@ -3,6 +3,7 @@ package br.com.ada.t1322.tecnicasprogramacao.projeto.view.command;
 import br.com.ada.t1322.tecnicasprogramacao.projeto.controller.TaskController;
 import br.com.ada.t1322.tecnicasprogramacao.projeto.model.Task;
 import br.com.ada.t1322.tecnicasprogramacao.projeto.view.View;
+import br.com.ada.t1322.tecnicasprogramacao.projeto.view.command.helper.StatusDisplayHelper;
 
 import java.util.Optional;
 
@@ -18,22 +19,24 @@ public class CreateTaskCommand implements Command {
 
     @Override
     public void execute() {
-        String title = view.getInput("📌 Informe o título da tarefa");
-        String description = view.getInput("📝 Informe a descrição (opcional)");
-        String deadline = view.getInput("📅 Informe a data limite (DD/MM/YYYY)");
-        String statusStr = view.getInput("🔄 Informe o status (Pendente, Em andamento, Concluído) (ou deixe em branco para 'Pendente')");
+        do {
+            String title = view.getInput("📌 Informe o título da tarefa");
+            String description = view.getInput("📝 Informe a descrição (opcional)");
+            String deadline = view.getInput("📅 Informe a data limite (DD/MM/YYYY)");
+            String statusStr = view.getInput("🔄 Informe o status " + StatusDisplayHelper.getStatusOptions() + " (ou deixe em branco para 'Pendente')");
 
-        try {
-            Task.Status status = Optional.ofNullable(statusStr)
-                    .filter(s -> !s.isBlank())
-                    .map(Task.Status::fromString)
-                    .orElse(Task.Status.PENDENTE);
+            try {
+                Task.Status status = Optional.ofNullable(statusStr)
+                        .filter(s -> !s.isBlank())
+                        .map(Task.Status::fromString)
+                        .orElse(Task.Status.PENDENTE);
 
-            Task task = taskController.createTask(title, description, deadline, status);
-            view.showMessage("✅ Tarefa criada com sucesso!");
-            view.showMessage(task.toString());
-        } catch (IllegalArgumentException e) {
-            view.showMessage("❌ Erro: " + e.getMessage());
-        }
+                Task task = taskController.createTask(title, description, deadline, status);
+                view.showMessage("✅ Tarefa criada com sucesso!");
+                view.showMessage(task.toString());
+            } catch (IllegalArgumentException e) {
+                view.showMessage("❌ Erro: " + e.getMessage());
+            }
+        } while (view.getInput("Deseja criar outra tarefa? (S/N)").trim().equalsIgnoreCase("S"));
     }
 }

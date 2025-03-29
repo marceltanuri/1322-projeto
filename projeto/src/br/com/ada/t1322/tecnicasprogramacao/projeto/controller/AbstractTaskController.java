@@ -6,6 +6,7 @@ import br.com.ada.t1322.tecnicasprogramacao.projeto.service.TaskService;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
@@ -13,7 +14,11 @@ import java.util.function.Predicate;
 
 public abstract class AbstractTaskController implements TaskController {
 
-    private final static DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private final static DateTimeFormatter DATE_TIME_FORMATTER = new DateTimeFormatterBuilder()
+            .appendOptional(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+            .appendOptional(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+            .toFormatter();
+
     protected final TaskService taskService;
 
     public AbstractTaskController(TaskService taskService) {
@@ -56,7 +61,16 @@ public abstract class AbstractTaskController implements TaskController {
 
     @Override
     public Task updateTask(Long id, String title, String description, String deadline, Task.Status status) {
-        TaskUpdateRequest taskUpdateRequest = TaskUpdateRequest.builder(id).title(title).description(description).deadline(LocalDate.parse(deadline, DATE_TIME_FORMATTER)).status(status).build();
+        Task existingTask = taskService.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Tarefa com o ID " + id + " não encontrada."));
+
+        TaskUpdateRequest taskUpdateRequest = TaskUpdateRequest.builder(id)
+                .title(title != null ? title : existingTask.getTitle())
+                .description(description != null ? description : existingTask.getDescription())
+                .deadline(deadline != null ? LocalDate.parse(deadline, DATE_TIME_FORMATTER) : existingTask.getDeadline())
+                .status(status != null ? status : existingTask.getStatus())
+                .build();
+
         return taskService.updateTask(taskUpdateRequest);
     }
 

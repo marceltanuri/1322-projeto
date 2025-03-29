@@ -1,65 +1,74 @@
----
-marp: true
-theme: default
-class:
-  - lead
-  - invert
-style: |
-  table {
-    font-size: 0.95em;
-  }
----
+<a id="top"></a>
+# Gerenciador de Tarefas Inteligente 📋✨
 
-# 📌 Desafio: Gerenciador de Tarefas Inteligente
-
-## 📍 Contexto
-
-Imagine que você foi contratado por uma startup que deseja desenvolver um **Gerenciador de Tarefas Inteligente** para ajudar profissionais a organizarem melhor seu dia a dia.  
-
-O objetivo é criar uma aplicação capaz de **cadastrar, listar e filtrar tarefas**, garantindo uma experiência simples e eficiente.  
+Este projeto é a base de um **Gerenciador de Tarefas Inteligente** desenvolvido para auxiliar profissionais a organizar suas atividades diárias. Foi criado e aprimorado durante o curso de Técnicas de Programação do programa Desenvolva+ da Ada e Mercado Livre, onde nossa base sólida foi expandida com melhorias e adaptações utilizando conceitos de SOLID e programação funcional.
 
 ---
 
-Além disso, o sistema deve oferecer suporte para **notificações automáticas** sobre prazos próximos, ajudando os usuários a manterem suas atividades sob controle.  
+## 📖 Documentação e Enunciado
 
-Seu desafio é desenvolver essa solução utilizando **Java**, aplicando conceitos modernos de **programação funcional, manipulação de datas e concorrência** para tornar o sistema rápido e eficiente.  
+- **Enunciado do Projeto:**  
+  Para mais informações sobre o contexto, os requisitos e as diretrizes do projeto, consulte o [Enunciado do Projeto](ENUNCIADO.md).
 
----
+- **Estrutura do Projeto:**  
+  Entenda melhor a organização das pastas e arquivos acessando o [ESTRUTURA.md](ESTRUTURA.md).
 
-## 🎯 Requisitos do Projeto
+- **Mudanças Realizadas:**  
+  Detalhes completos sobre as melhorias feitas no projeto podem ser encontrados no [MUDANÇAS.md](MUDANÇAS.md).
 
-A aplicação deve permitir que os usuários realizem as seguintes operações:
-
-### ✅ Cadastro de Tarefas  
-- Cada tarefa deve conter: **título, descrição, data limite (deadline) e status** (`Pendente`, `Em andamento`, `Concluído`).  
-- O sistema deve garantir que **nenhuma tarefa seja cadastrada com data limite no passado**.  
-
-### ✅ Gerenciamento e Filtragem  
-- Exibir **todas as tarefas cadastradas**.  
-- Permitir **filtrar tarefas por status**.  
-- Listar as tarefas **ordenadas por data limite**.  
 
 ---
 
-### ✅ Validação e Qualidade dos Dados  
-- Evitar que **tarefas com títulos muito curtos** sejam cadastradas.  
-- Garantir que **nenhuma tarefa seja salva sem um status válido**.  
+## 🚀 Funcionalidades
 
-### ✅ Notificações Inteligentes  
-- O sistema deve alertar automaticamente o usuário **quando uma tarefa estiver próxima da data limite**.  
+- **Cadastro de Tarefas:**  
+  Registre novas tarefas com título, descrição, data limite e status (Pendente, Em andamento, Concluído, Bloqueado).
 
----
+- **Listagem e Filtragem:**  
+  Exiba todas as tarefas cadastradas, com opções de filtragem por status e ordenação por data, título, status ou ID.
 
-## 🛠 Tecnologias e Conceitos Esperados
+- **Atualização de Tarefas:**  
+  Atualize os dados das tarefas; se algum campo for deixado em branco, o valor existente é mantido.
 
-Para resolver esse desafio, recomenda-se o uso dos seguintes recursos:
-
-📌 **Manipulação de Datas:** Uso da API `java.time` para lidar com datas e prazos.  
-📌 **Programação Funcional:** Uso de `Streams`, `Optional` e `Predicate` para processar e validar as tarefas.  
-📌 **Execução Assíncrona:** Uso de `CompletableFuture` para implementar notificações automáticas.  
+- **Ordenação Dinâmica:**  
+  Utilize comparadores customizados para ordenar as tarefas conforme os critérios definidos, eliminando código repetido.
 
 ---
 
-🚀 **O projeto será desenvolvido inteiramente durante as aulas**, em um total de **6 horas**, com cada funcionalidade sendo implementada de forma incremental.
+## 🔍 Mudanças e Melhorias Realizadas
 
-Boa sorte e mãos à obra! 💻🔥
+Foram realizadas diversas melhorias no projeto, incluindo:
+
+- Formatação da data para o padrão brasileiro.
+- Inclusão de um novo status **Bloqueado** no enum `Task.Status`.
+- Refatoração de comandos para reduzir duplicação e melhorar a reutilização de código.
+- Adição de loops para repetição de ações no menu.
+- Tratamento de campos nulos na atualização de tarefas.
+
+Para detalhes completos, consulte o [arquivo de mudanças](MUDANÇAS.md).
+
+---
+
+## 🚀 Implementações Futuras
+
+As seguintes funcionalidades serão adicionadas em versões futuras do projeto:
+
+-  **Notificações Inteligentes com CompletableFuture:**  
+  O sistema alertará automaticamente o usuário quando uma tarefa estiver próxima do prazo de conclusão, utilizando notificações assíncronas para melhorar a performance da aplicação.
+
+---
+
+## 💻 Tecnologias Utilizadas
+
+- **Java**
+- **Programação Funcional e Orientada a Objetos (SOLID)**
+- **API java.time** para manipulação de datas
+- **Streams e Optionals** para processamento e validação de dados
+- **Collections (Comparator, List, HashMap, Map)** para manipulação de dados e ordenação
+- **Scanner** para leitura de entradas do usuário no console
+
+---
+
+[Voltar ao topo](#top)
+
+

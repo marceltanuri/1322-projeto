@@ -1,0 +1,61 @@
+
+[Voltar ao README](README.md)
+```markdown
+├── ENUNCIADO.md
+└── projeto
+    ├── .gitignore
+    ├── .idea
+        ├── .gitignore
+        ├── misc.xml
+        ├── modules.xml
+        ├── uiDesigner.xml
+        └── vcs.xml
+    ├── projeto.iml
+    └── src
+        └── br
+            └── com
+                └── ada
+                    └── t1322
+                        └── tecnicasprogramacao
+                            └── projeto
+                                ├── Application.java
+                                ├── controller
+                                    ├── AbstractTaskController.java
+                                    ├── TaskController.java
+                                    └── TaskControllerImpl.java
+                                ├── dto
+                                    └── TaskUpdateRequest.java
+                                ├── model
+                                    └── Task.java
+                                ├── repository
+                                    ├── TaskRepository.java
+                                    └── TaskRepositoryImpl.java
+                                ├── service
+                                    ├── AbstractTaskService.java
+                                    ├── TaskComparators.java
+                                    ├── TaskService.java
+                                    └── TaskServiceImpl.java
+                                ├── util
+                                    └── SampleDataInitializer.java
+                                └── view
+                                    ├── ConsoleApp.java
+                                    ├── ConsoleView.java
+                                    ├── InputReader.java
+                                    ├── Operacao.java
+                                    ├── View.java
+                                    └── command
+                                        ├── Command.java
+                                        ├── CreateTaskCommand.java
+                                        ├── ExitCommand.java
+                                        ├── FilterTasksByCustomPredicateCommand.java
+                                        ├── FilterTasksByStatusCommand.java
+                                        ├── ListTasksCommand.java
+                                        ├── UpdateTaskCommand.java
+                                        ├── UpdateTaskStatusCommand.java
+                                        ├── helper
+                                            └── StatusDisplayHelper.java
+                                        └── task_sorting
+                                            ├── SortingSelectionTaskHandler.java
+                                            └── SortingTaskOption.java
+
+```
