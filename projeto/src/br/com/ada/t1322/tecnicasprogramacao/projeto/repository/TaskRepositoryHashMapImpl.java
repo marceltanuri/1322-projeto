@@ -12,7 +12,7 @@ public class TaskRepositoryHashMapImpl implements TaskRepository {
     private final Map<Long, Task> tasks = new HashMap<>();
 
     private TaskRepositoryHashMapImpl() {
-        // Construtor privado para impedir instanciação externa
+
     }
 
     public static TaskRepositoryHashMapImpl getInstance() {

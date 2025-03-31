@@ -21,7 +21,7 @@ public class FilterTasksByStatusCommand implements Command {
 
     @Override
     public void execute() {
-        String statusInput = view.getInput("🔎 Digite o status para filtrar (Pendente, Em andamento, Concluído)");
+        String statusInput = view.getInput("🔎 Digite o status para filtrar (Pendente, Em andamento,Bloqueado Concluído)");
         Task.Status status;
         try {
             status = Task.Status.fromString(statusInput);
